@@ -631,7 +631,32 @@ Code constraints :
 | **2** | `3` | 1, 2, 3 | `6` |
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int maxSum = INT_MIN;
+
+int dfs(vector<int>& arr, int i) {
+    if (i >= arr.size() || arr[i] == -1001) return 0;
+
+    int left = max(0, dfs(arr, 2*i + 1));
+    int right = max(0, dfs(arr, 2*i + 2));
+
+    maxSum = max(maxSum, arr[i] + left + right);
+
+    return arr[i] + max(left, right);
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    dfs(arr, 0);
+    cout << maxSum;
+}
 ```
 
 -------------------------------------
