@@ -706,7 +706,38 @@ Tree is constructed using level order input
 | **2** | `6` | 1, 2, 3, 4, 5, 6 | `1 3 6` |
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    int n;
+    cin >> n;
+
+    if (n == 0) return 0;
+
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    queue<int> q;
+    q.push(0);
+
+    while (!q.empty()) {
+        int size = q.size();
+
+        for (int i = 0; i < size; i++) {
+            int idx = q.front(); q.pop();
+
+            if (i == size - 1)
+                cout << arr[idx] << " ";
+
+            int left = 2*idx + 1;
+            int right = 2*idx + 2;
+
+            if (left < n && arr[left] != -1) q.push(left);
+            if (right < n && arr[right] != -1) q.push(right);
+        }
+    }
+}
 ```
 
 ------------------------------
