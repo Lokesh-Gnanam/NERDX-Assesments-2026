@@ -545,9 +545,91 @@ Input tree is valid
 | **2** | `0` | `(empty)` | `(empty)` | `(empty)` |
 
 
-```cpp
+```java
 
+import java.util.*;
+class TreeNode {
+    int val;
+    TreeNode left, right;
 
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+public class Main {
+    public static TreeNode buildTree(String[] values) {
+        if (values.length == 0 || values[0].equals("null")) return null;
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < values.length) {
+            TreeNode current = queue.poll();
+
+            if (i < values.length && !values[i].equals("null")) {
+                current.left = new TreeNode(Integer.parseInt(values[i]));
+                queue.offer(current.left);
+            }
+            i++;
+            if (i < values.length && !values[i].equals("null")) {
+                current.right = new TreeNode(Integer.parseInt(values[i]));
+                queue.offer(current.right);
+            }
+            i++;
+        }
+
+        return root;
+    }
+
+    public static String serialize(TreeNode root) {
+        if (root == null) return "(empty)";
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode curr = queue.poll();
+
+            if (curr == null) {
+                sb.append("null ");
+            } else {
+                sb.append(curr.val).append(" ");
+                queue.offer(curr.left);
+                queue.offer(curr.right);
+            }
+        }
+
+        return sb.toString();
+    }
+    public static String levelOrder(TreeNode root) {
+        if (root == null) return "(empty)";
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            TreeNode curr = queue.poll();
+            if (curr == null) continue;
+            sb.append(curr.val).append(" ");
+            if (curr.left != null) queue.offer(curr.left);
+            if (curr.right != null) queue.offer(curr.right);
+        }
+        return sb.toString();
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        if (n == 0) {
+            System.out.println("(empty)");
+            System.out.println("(empty)");
+            return;
+        }
+        sc.nextLine();
+        String inputLine = sc.nextLine().trim();
+        String[] values = inputLine.split(" ");
+        TreeNode root = buildTree(values);
+        System.out.println(serialize(root));
+        System.out.println(levelOrder(root));
+    }
+}
 ```
 ---------------
 ---------------
@@ -742,6 +824,66 @@ Tree is constructed using level order input
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Node {
+    int val;
+    Node* left;
+    Node* right;
+    Node(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+// Build tree properly (skip -1)
+Node* buildTree(vector<int>& arr) {
+    if (arr.empty() || arr[0] == -1) return NULL;
+
+    Node* root = new Node(arr[0]);
+    queue<Node*> q;
+    q.push(root);
+
+    int i = 1;
+
+    while (!q.empty() && i < arr.size()) {
+        Node* curr = q.front(); q.pop();
+
+        // left child
+        if (i < arr.size() && arr[i] != -1) {
+            curr->left = new Node(arr[i]);
+            q.push(curr->left);
+        }
+        i++;
+
+        // right child
+        if (i < arr.size() && arr[i] != -1) {
+            curr->right = new Node(arr[i]);
+            q.push(curr->right);
+        }
+        i++;
+    }
+
+    return root;
+}
+
+// Right view BFS
+void rightView(Node* root) {
+    if (!root) return;
+
+    queue<Node*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        int size = q.size();
+
+        for (int i = 0; i < size; i++) {
+            Node* curr = q.front(); q.pop();
+
+            if (i == size - 1)
+                cout << curr->val << " ";
+
+            if (curr->left) q.push(curr->left);
+            if (curr->right) q.push(curr->right);
+        }
+    }
+}
+
 int main() {
     int n;
     cin >> n;
@@ -751,25 +893,8 @@ int main() {
     vector<int> arr(n);
     for (int i = 0; i < n; i++) cin >> arr[i];
 
-    queue<int> q;
-    q.push(0);
-
-    while (!q.empty()) {
-        int size = q.size();
-
-        for (int i = 0; i < size; i++) {
-            int idx = q.front(); q.pop();
-
-            if (i == size - 1)
-                cout << arr[idx] << " ";
-
-            int left = 2*idx + 1;
-            int right = 2*idx + 2;
-
-            if (left < n && arr[left] != -1) q.push(left);
-            if (right < n && arr[right] != -1) q.push(right);
-        }
-    }
+    Node* root = buildTree(arr);
+    rightView(root);
 }
 ```
 
