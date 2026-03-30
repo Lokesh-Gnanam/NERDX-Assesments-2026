@@ -428,7 +428,34 @@ Code constraints :
 
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> A(n), B(n), C(n), D(n);
+    for (int i = 0; i < n; i++) cin >> A[i];
+    for (int i = 0; i < n; i++) cin >> B[i];
+    for (int i = 0; i < n; i++) cin >> C[i];
+    for (int i = 0; i < n; i++) cin >> D[i];
+
+    unordered_map<int, int> mp;
+
+    for (int a : A)
+        for (int b : B)
+            mp[a + b]++;
+
+    int count = 0;
+
+    for (int c : C)
+        for (int d : D)
+            if (mp.count(-(c + d)))
+                count += mp[-(c + d)];
+
+    cout << count;
+}
 ```
 
 
