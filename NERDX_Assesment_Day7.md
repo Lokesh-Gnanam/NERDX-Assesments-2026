@@ -549,7 +549,28 @@ Code constraints :
 | **2** | `3` | 30, 40, 50 | `1 1 0` |
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> temp(n), res(n, 0);
+    for (int i = 0; i < n; i++) cin >> temp[i];
+
+    stack<int> st;
+
+    for (int i = 0; i < n; i++) {
+        while (!st.empty() && temp[i] > temp[st.top()]) {
+            int idx = st.top(); st.pop();
+            res[idx] = i - idx;
+        }
+        st.push(i);
+    }
+
+    for (int x : res) cout << x << " ";
+}
 ```
 
 --------------------------
