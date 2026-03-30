@@ -446,18 +446,11 @@ Code constraints :
 0 ≤ n ≤ 10⁴
 -1000 ≤ Node.val ≤ 1000
 Input tree is valid
-Sample test cases :
-Input 1 :
-7
-1 2 3 null null 4 5
-Output 1 :
-1 2 3 null null 4 5 null null null null 
-1 2 3 4 5 
-Input 2 :
-0
-Output 2 :
-(empty)
-(empty)
+
+| Case | Total Nodes | Level-Order Input | Full Structure Output | Clean Traversal Output |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | `7` | `1 2 3 null null 4 5` | `1 2 3 null null 4 5 null null null null` | `1 2 3 4 5` |
+| **2** | `0` | `(empty)` | `(empty)` | `(empty)` |
 
 ---------------
 ---------------
