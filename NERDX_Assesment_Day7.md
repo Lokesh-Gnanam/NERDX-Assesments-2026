@@ -130,7 +130,68 @@ Code constraints :
 | **2** | `9` | 5, 4, 8, 11, -1, 13, 4, 7, 2 | `22` | `Path Exists` |
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+struct Node {
+    int val;
+    Node* left;
+    Node* right;
+    Node(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+Node* buildTree(vector<int>& arr) {
+    if (arr.empty()) return NULL;
+
+    Node* root = new Node(arr[0]);
+    queue<Node*> q;
+    q.push(root);
+    int i = 1;
+
+    while (!q.empty() && i < arr.size()) {
+        Node* curr = q.front(); q.pop();
+
+        if (i < arr.size()) {
+            curr->left = new Node(arr[i++]);
+            q.push(curr->left);
+        }
+        if (i < arr.size()) {
+            curr->right = new Node(arr[i++]);
+            q.push(curr->right);
+        }
+    }
+    return root;
+}
+
+bool hasPath(Node* root, int sum) {
+    if (!root) return false;
+
+    if (!root->left && !root->right)
+        return sum == root->val;
+
+    return hasPath(root->left, sum - root->val) ||
+           hasPath(root->right, sum - root->val);
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    if (n == 0) {
+        cout << "No Path Found";
+        return 0;
+    }
+
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) cin >> arr[i];
+
+    int target;
+    cin >> target;
+
+    Node* root = buildTree(arr);
+
+    cout << (hasPath(root, target) ? "Path Exists" : "No Path Found");
+}
 ```
 
 
@@ -151,15 +212,6 @@ Code constraints :
 s consists of lowercase letters, digits, and brackets []
 1 ≤ k ≤ 300
 Input string is always valid and properly formatted
-Sample test cases :
-Input 1 :
-3[a]2[bc]
-Output 1 :
-aaabcbc
-Input 2 :
-3[a2[c]]
-Output 2 :
-accaccacc
 
 
 ---------------------------
