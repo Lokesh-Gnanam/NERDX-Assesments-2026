@@ -306,7 +306,7 @@ Code constraints :
 ------------------------
 ------------------------
 
-## C5.At a busy Chennai bus depot, conductors continuously record ticket fares collected throughout the day. These fares are managed using a stack-like system, where the most recently added fare is always the first to be removed.
+## C5.  At a busy Chennai bus depot, conductors continuously record ticket fares collected throughout the day. These fares are managed using a stack-like system, where the most recently added fare is always the first to be removed.
 
 
 
@@ -387,23 +387,18 @@ Print a single integer → number of valid tuples
 Code constraints :
 1 ≤ n ≤ 200
 -2²⁸ ≤ values ≤ 2²⁸
-Sample test cases :
-Input 1 :
-2
-1 2
--2 -1
--1 2
-0 2
-Output 1 :
-2
-Input 2 :
-3
-1 2 3
--1 -2 -3
-0 0 0
-0 0 0
-Output 2 :
-27
+
+
+| Case | $N$ | Logic Formula | Key Pairs ($A+B$) | Output |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | 2 | $A[i]+B[j]+C[k]+D[l]=0$ | (1,-2), (2,-1) | `2` |
+| **2** | 3 | All $C, D$ are 0 | (1,-1), (2,-2), (3,-3) | `27` |
+
+
+```cpp
+
+```
+
 
 ---------------------------
 ---------------------------
