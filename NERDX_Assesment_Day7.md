@@ -129,70 +129,72 @@ Code constraints :
 | **1** | `5` | 1, 2, 3 | `5` | `No Path Found` |
 | **2** | `9` | 5, 4, 8, 11, -1, 13, 4, 7, 2 | `22` | `Path Exists` |
 
-```cpp
-#include <bits/stdc++.h>
-using namespace std;
-
-struct Node {
+```java
+import java.util.*;
+class TreeNode {
     int val;
-    Node* left;
-    Node* right;
-    Node(int x) : val(x), left(NULL), right(NULL) {}
-};
+    TreeNode left, right;
 
-Node* buildTree(vector<int>& arr) {
-    if (arr.empty()) return NULL;
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+public class Main {
+    public static TreeNode buildTree(String[] values) {
+        if (values.length == 0 || values[0].equals("-1")) return null;
 
-    Node* root = new Node(arr[0]);
-    queue<Node*> q;
-    q.push(root);
-    int i = 1;
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < values.length) {
+            TreeNode current = queue.poll();
+            if (i < values.length && !values[i].equals("-1")) {
+                current.left = new TreeNode(Integer.parseInt(values[i]));
+                queue.offer(current.left);
+            }
+            i++;
 
-    while (!q.empty() && i < arr.size()) {
-        Node* curr = q.front(); q.pop();
-
-        if (i < arr.size()) {
-            curr->left = new Node(arr[i++]);
-            q.push(curr->left);
+            if (i < values.length && !values[i].equals("-1")) {
+                current.right = new TreeNode(Integer.parseInt(values[i]));
+                queue.offer(current.right);
+            }
+            i++;
         }
-        if (i < arr.size()) {
-            curr->right = new Node(arr[i++]);
-            q.push(curr->right);
+
+        return root;
+    }
+    public static boolean hasPathSum(TreeNode root, int targetSum) {
+        if (root == null) return false;
+
+        if (root.left == null && root.right == null) {
+            return targetSum == root.val;
+        }
+        int remaining = targetSum - root.val;
+        return hasPathSum(root.left, remaining) || hasPathSum(root.right, remaining);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        sc.nextLine();
+        if (n == 0) {
+            System.out.println("No Path Found");
+            return;
+        }
+        String line = sc.nextLine().trim();
+        String[] values = line.split(" ");
+        int targetSum = sc.nextInt();
+        TreeNode root = buildTree(values);
+        if (hasPathSum(root, targetSum)) {
+            System.out.println("Path Exists");
+        } else {
+            System.out.println("No Path Found");
         }
     }
-    return root;
-}
-
-bool hasPath(Node* root, int sum) {
-    if (!root) return false;
-
-    if (!root->left && !root->right)
-        return sum == root->val;
-
-    return hasPath(root->left, sum - root->val) ||
-           hasPath(root->right, sum - root->val);
-}
-
-int main() {
-    int n;
-    cin >> n;
-
-    if (n == 0) {
-        cout << "No Path Found";
-        return 0;
-    }
-
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++) cin >> arr[i];
-
-    int target;
-    cin >> target;
-
-    Node* root = buildTree(arr);
-
-    cout << (hasPath(root, target) ? "Path Exists" : "No Path Found");
 }
 ```
+
 
 
 
