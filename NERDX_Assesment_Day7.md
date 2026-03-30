@@ -593,18 +593,16 @@ Code constraints :
 0 ≤ n ≤ 1000
 -100 ≤ Node value ≤ 100
 Tree is constructed using level order input
-Sample test cases :
-Input 1 :
-7
-1 2 3 -1 5 -1 4
-Output 1 :
-1 3 4 
-Input 2 :
-6
-1 2 3 4 5 6
-Output 2 :
-1 3 6 
 
+
+| Case | Total Nodes | Level-Order Tree Input | Output (Right Side View) |
+| :--- | :--- | :--- | :--- |
+| **1** | `7` | 1, 2, 3, -1, 5, -1, 4 | `1 3 4` |
+| **2** | `6` | 1, 2, 3, 4, 5, 6 | `1 3 6` |
+
+```cpp
+
+```
 
 ------------------------------
 ------------------------------
