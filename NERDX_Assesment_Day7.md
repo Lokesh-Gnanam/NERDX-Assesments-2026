@@ -545,17 +545,14 @@ Print a single integer → maximum path sum
 Code constraints :
 1 ≤ n ≤ 1000
 -1000 ≤ Node values ≤ 1000
-Sample test cases :
-Input 1 :
-7
--10 9 20 -1001 -1001 15 7
-Output 1 :
-42
-Input 2 :
-3
-1 2 3
-Output 2 :
-6
+| Case | Total Nodes | Level-Order Tree Input | Output (Max Path Sum) |
+| :--- | :--- | :--- | :--- |
+| **1** | `7` | -10, 9, 20, -1001, -1001, 15, 7 | `42` |
+| **2** | `3` | 1, 2, 3 | `6` |
+
+```cpp
+
+```
 
 -------------------------------------
 -------------------------------------
