@@ -39,17 +39,17 @@ Code constraints :
 1 ≤ s.length ≤ 3000
 Pattern contains only lowercase English letters
 Words in s are separated by a single space
-Sample test cases :
-Input 1 :
-abba
-dog cat cat fish
-Output 1 :
-Pattern Does Not Match
-Input 2 :
-abba
-dog cat cat dog
-Output 2 :
-Pattern Matches
+
+| Case | Pattern | Word Sequence | Logic Result | Output |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | `abba` | `dog cat cat fish` | Mapping failure at index 3 | `Pattern Does Not Match` |
+| **2** | `abba` | `dog cat cat dog` | Consistent 1:1 mapping | `Pattern Matches` |
+
+
+```cpp
+
+
+```
 
 
 -----------------------------------------------------------
