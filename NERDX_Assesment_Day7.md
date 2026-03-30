@@ -355,7 +355,39 @@ pop, top, and getMin will always be called on a non-empty stack
 | `top` | [-2, 0] | [-2] | **0** |
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    int q;
+    cin >> q;
+
+    stack<int> st, minSt;
+
+    while (q--) {
+        string op;
+        cin >> op;
+
+        if (op == "push") {
+            int x; cin >> x;
+            st.push(x);
+
+            if (minSt.empty() || x <= minSt.top())
+                minSt.push(x);
+        }
+        else if (op == "pop") {
+            if (st.top() == minSt.top())
+                minSt.pop();
+            st.pop();
+        }
+        else if (op == "top") {
+            cout << st.top() << endl;
+        }
+        else if (op == "getMin") {
+            cout << minSt.top() << endl;
+        }
+    }
+}
 ```
 
 -----------------------
