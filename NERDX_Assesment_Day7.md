@@ -452,6 +452,11 @@ Input tree is valid
 | **1** | `7` | `1 2 3 null null 4 5` | `1 2 3 null null 4 5 null null null null` | `1 2 3 4 5` |
 | **2** | `0` | `(empty)` | `(empty)` | `(empty)` |
 
+
+```cpp
+
+
+```
 ---------------
 ---------------
 
@@ -477,17 +482,16 @@ Print n space-separated integers representing waiting days
 Code constraints :
 1 ≤ n ≤ 100000
 30 ≤ temperatures[i] ≤ 100
-Sample test cases :
-Input 1 :
-8
-73 74 75 71 69 72 76 73
-Output 1 :
-1 1 4 2 1 1 0 0 
-Input 2 :
-3
-30 40 50
-Output 2 :
-1 1 0 
+
+
+| Case | Total Days ($N$) | Temperature Readings | Output (Wait Days) |
+| :--- | :--- | :--- | :--- |
+| **1** | `8` | 73, 74, 75, 71, 69, 72, 76, 73 | `1 1 4 2 1 1 0 0` |
+| **2** | `3` | 30, 40, 50 | `1 1 0` |
+
+```cpp
+
+```
 
 --------------------------
 --------------------------
