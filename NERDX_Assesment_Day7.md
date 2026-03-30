@@ -293,23 +293,12 @@ Empty subset printed as: []
 Code constraints :
 1 ≤ n ≤ 10
 -10 ≤ nums[i] ≤ 10
-Sample test cases :
-Input 1 :
-3
-1 2 2
-Output 1 :
-[]
-1 
-1 2 
-1 2 2 
-2 
-2 2 
-Input 2 :
-1
-0
-Output 2 :
-[]
-0 
+
+| Case | Size ($N$) | Input Elements | Output (Unique Subsets) |
+| :--- | :--- | :--- | :--- |
+| **1** | `3` | 1, 2, 2 | `[]`<br>`1`<br>`1 2`<br>`1 2 2`<br>`2`<br>`2 2` |
+| **2** | `1` | 0 | `[]`<br>`0` |
+
 
 ------------------------
 ------------------------
