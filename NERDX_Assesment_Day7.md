@@ -299,6 +299,9 @@ Code constraints :
 | **1** | `3` | 1, 2, 2 | `[]`<br>`1`<br>`1 2`<br>`1 2 2`<br>`2`<br>`2 2` |
 | **2** | `1` | 0 | `[]`<br>`0` |
 
+```cpp
+
+```
 
 ------------------------
 ------------------------
@@ -340,34 +343,20 @@ Code constraints :
 1 ≤ Q ≤ 30,000
 -2³¹ ≤ x ≤ 2³¹ - 1
 pop, top, and getMin will always be called on a non-empty stack
-Sample test cases :
-Input 1 :
-8
-push -2
-push 0
-push -3
-getMin
-pop
-top
-getMin
-top
-Output 1 :
--3
-0
--2
-0
-Input 2 :
-6
-push 5
-push 3
-getMin
-pop
-getMin
-top
-Output 2 :
-3
-5
-5
+
+
+| Operation | Main Stack | Min Stack | Output/Result |
+| :--- | :--- | :--- | :--- |
+| `push -2` | [-2] | [-2] | |
+| `push 0` | [-2, 0] | [-2] | |
+| `push -3` | [-2, 0, -3] | [-2, -3] | |
+| `getMin` | [-2, 0, -3] | [-2, -3] | **-3** |
+| `pop` | [-2, 0] | [-2] | |
+| `top` | [-2, 0] | [-2] | **0** |
+
+```cpp
+
+```
 
 -----------------------
 -----------------------
