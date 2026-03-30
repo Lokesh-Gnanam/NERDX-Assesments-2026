@@ -47,7 +47,47 @@ Words in s are separated by a single space
 
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+int main() {
+    string pattern, s;
+    cin >> pattern;
+    cin.ignore();
+    getline(cin, s);
+
+    vector<string> words;
+    stringstream ss(s);
+    string word;
+    while (ss >> word) words.push_back(word);
+
+    if (pattern.size() != words.size()) {
+        cout << "Pattern Does Not Match";
+        return 0;
+    }
+
+    unordered_map<char, string> m1;
+    unordered_map<string, char> m2;
+
+    for (int i = 0; i < pattern.size(); i++) {
+        char c = pattern[i];
+        string w = words[i];
+
+        if (m1.count(c) && m1[c] != w) {
+            cout << "Pattern Does Not Match";
+            return 0;
+        }
+        if (m2.count(w) && m2[w] != c) {
+            cout << "Pattern Does Not Match";
+            return 0;
+        }
+
+        m1[c] = w;
+        m2[w] = c;
+    }
+
+    cout << "Pattern Matches";
+}
 
 ```
 
