@@ -214,6 +214,52 @@ s consists of lowercase letters, digits, and brackets []
 Input string is always valid and properly formatted
 
 
+
+| Case | Input (Encoded) | Decoding Logic | Output (Decoded) |
+| :--- | :--- | :--- | :--- |
+| **1** | `3[a]2[bc]` | 3*'a' + 2*'bc' | `aaabcbc` |
+| **2** | `3[a2[c]]` | 3*( 'a' + 2*'c' ) | `accaccacc` |
+
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+
+    stack<int> counts;
+    stack<string> resultStack;
+
+    string curr = "";
+    int k = 0;
+
+    for (char c : s) {
+        if (isdigit(c)) {
+            k = k * 10 + (c - '0');
+        } else if (c == '[') {
+            counts.push(k);
+            resultStack.push(curr);
+            k = 0;
+            curr = "";
+        } else if (c == ']') {
+            int count = counts.top(); counts.pop();
+            string temp = resultStack.top(); resultStack.pop();
+
+            for (int i = 0; i < count; i++)
+                temp += curr;
+
+            curr = temp;
+        } else {
+            curr += c;
+        }
+    }
+
+    cout << curr;
+}
+```
+
 ---------------------------
 ---------------------------
 
