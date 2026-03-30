@@ -300,7 +300,40 @@ Code constraints :
 | **2** | `1` | 0 | `[]`<br>`0` |
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 
+void backtrack(int idx, vector<int>& nums, vector<int>& curr) {
+    // Print current subset
+    if (curr.empty()) {
+        cout << "[]" << endl;
+    } else {
+        for (int x : curr) cout << x << " ";
+        cout << endl;
+    }
+
+    for (int i = idx; i < nums.size(); i++) {
+        // Skip duplicates
+        if (i > idx && nums[i] == nums[i - 1]) continue;
+
+        curr.push_back(nums[i]);
+        backtrack(i + 1, nums, curr);
+        curr.pop_back();
+    }
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<int> nums(n);
+    for (int i = 0; i < n; i++) cin >> nums[i];
+
+    sort(nums.begin(), nums.end());
+
+    vector<int> curr;
+    backtrack(0, nums, curr);
+}
 ```
 
 ------------------------
