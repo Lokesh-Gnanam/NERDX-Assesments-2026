@@ -124,19 +124,16 @@ Code constraints :
 0 ≤ N ≤ 1000
 -1000 ≤ Node values ≤ 1000
 -1000 ≤ targetSum ≤ 1000
-Sample test cases :
-Input 1 :
-5
-1 2 3
-5
-Output 1 :
-No Path Found
-Input 2 :
-9
-5 4 8 11 -1 13 4 7 2
-22
-Output 2 :
-Path Exists
+| Case | Total Nodes | Level-Order Tree Input | Target Sum | Output |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | `5` | 1, 2, 3 | `5` | `No Path Found` |
+| **2** | `9` | 5, 4, 8, 11, -1, 13, 4, 7, 2 | `22` | `Path Exists` |
+
+```cpp
+
+```
+
+
 
 -------------------
 -------------------
