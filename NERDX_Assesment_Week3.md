@@ -1,4 +1,4 @@
-# 3rd WEEK NERDX ASSESSMENT - C++ Solutions
+# WEEK-3 NERDX ASSESSMENT - C++ Solutions
 
 ---
 
